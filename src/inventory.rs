@@ -13,12 +13,11 @@
 pub fn find_qty(names: &[&str], quantities: &[u32], wanted: &str) -> Option<u32> {
     for i in 0..names.len() {
         if names[i] == wanted {
-            return quantities[i];
+            return Some(quantities[i]);
         }
     }
     None
 }
-
 /// Reads a quantity typed by the player.
 ///
 /// ```
@@ -29,7 +28,7 @@ pub fn find_qty(names: &[&str], quantities: &[u32], wanted: &str) -> Option<u32>
 /// ```
 pub fn parse_qty(text: &str) -> Result<u32, String> {
     match text.trim().parse::<u32>() {
-        Ok(n) => Ok(n)
+        Ok(n) => Ok(n),
         Err(_) => Err(format!("bad quantity: {}", text.trim())),
     }
 }
